@@ -52,24 +52,28 @@ jobs:
 ```
 Event Workflow Triggers:
   Repository Related Events:
-    - `push`: Triggered when code is pushed to the repository.
-    - `pull_request`: Triggered when a pull request is opened, synchronized, or reopened.
-    - `release`: Triggered when a release is published, unpublished, created, edited, or deleted.
-    - `issue_comment`: Triggered when a comment is created on an issue or pull request.
-    - `fork`: Triggered when a repository is forked.
-    - `watch`: Triggered when someone stars the repository.
-    - `create`: Triggered when a branch or tag is created.
-    - `delete`: Triggered when a branch or tag is deleted.
-    - `deployment`: Triggered when a deployment is created.
-    - `deployment_status`: Triggered when the status of a deployment changes.
-    - `pull_request_review`: Triggered when a review is submitted on a pull request.
-    - `pull_request_review_comment`: Triggered when a comment is created on a pull request review.
-    - `push` and `pull_request` are the most commonly used triggers for CI/CD workflows.
+    - `push`: Triggered when code is pushed to the repository. Syntax: `on: push`
+    - `pull_request`: Triggered when a pull request is opened, synchronized, or reopened. Syntax: `on: pull_request`
+    - `release`: Triggered when a release is published, unpublished, created, edited, or deleted. Syntax: `on: release`
+    - `issue_comment`: Triggered when a comment is created on an issue or pull request. Syntax: `on: issue_comment`
+    - `fork`: Triggered when a repository is forked. Syntax: `on: fork`
+    - `watch`: Triggered when someone stars the repository. Syntax: `on: watch`
+    - `create`: Triggered when a branch or tag is created. Syntax: `on: create`
+    - `delete`: Triggered when a branch or tag is deleted. Syntax: `on: delete`
+    - `deployment`: Triggered when a deployment is created. Syntax: `on: deployment`
+    - `deployment_status`: Triggered when the status of a deployment changes. Syntax: `on: deployment_status`
+    - `pull_request_review`: Triggered when a review is submitted on a pull request. Syntax: `on: pull_request_review`
+    - `pull_request_review_comment`: Triggered when a comment is created on a pull request review. Syntax: `on: pull_request_review_comment`
   Other Event Triggers:
-    - `workflow_dispatch`: Triggered manually via the GitHub Actions tab.
-    - `repository_dispatch`: Triggered by an external event via the GitHub API.
-    - `workflow_call`: Triggered by another workflow.
-    - `schedule`: Triggered at scheduled times using cron syntax.
+    - `workflow_dispatch`: Triggered manually via the GitHub Actions tab. Syntax: `on: workflow_dispatch`
+    - `repository_dispatch`: Triggered by an external event via the GitHub API. Syntax: `on: repository_dispatch`
+    - `workflow_call`: Triggered by another workflow. Syntax: `on: workflow_call`
+    - `schedule`: Triggered at scheduled times using cron syntax. Syntax: 
+      ```yaml
+      on:
+        schedule:
+          - cron: '0 0 * * *' # Runs daily at midnight
+      ```
   
   Actions:
     - Predefined tasks that can be used in workflows.
