@@ -1,0 +1,83 @@
+Github Actions Important Featutres:
+- workflows
+  Attached to a repository and define automated processes.
+  Contains one or more jobs.
+  Triggered by events (e.g., push, pull request) or scheduled times.
+- Jobs
+  A job is a set of steps that execute on the same runner. [Runners are servers that run your workflows.]
+  Can run sequentially or in parallel.
+  Can also set conditions for job execution.
+- Steps
+  A step is an individual task within a job.
+  Can run commands or use actions (predefined tasks) [Shell script or an action].
+  Can use custom or marketplace actions.
+  Steps run in the order they are defined.
+  can be conditional based on the success or failure of previous steps.
+
+Hierarchy:
+- Code Repository -> Workflows -> Jobs -> Steps
+
+Github Actions Billing:
+- Free for public repositories.
+- Private repositories have a free tier with limits on minutes and storage.
+- https://docs.github.com/en/billing/concepts/product-billing/github-actions
+
+Enabling Github Actions:
+- Go to the repository on GitHub.
+- Click on the "Settings" tab.
+- In the left sidebar, click on "Actions" under "Code and automation".
+- Ensure that "Allow all actions" is selected to enable GitHub Actions for the repository.
+- You can also configure specific permissions and settings for workflows and actions in this section.
+
+Workflow File Location:
+- Workflow files are stored in the `.github/workflows/` directory of your repository. 
+- Each workflow is defined in a separate YAML file with a `.yml` or `.yaml` extension.
+
+Creating a Basic Workflow:
+- Create a new file in the `.github/workflows/` directory, e.g., `ci.yml`.
+- Define the workflow using YAML syntax. For example:
+
+```yaml
+name: First Workflow
+on: workflow_dispatch  # Trigger manually
+# on: [push, pull_request]  # Trigger on push or pull request
+jobs:
+  first-job:
+    runs-on: ubuntu-latest # Specify the runner environment
+    steps:
+      - name: Print Greeting
+        run: echo "Hello World"
+      - name: Print GoodBye
+        run: echo "Goodbye World"
+```
+Event Workflow Triggers:
+  Repository Related Events:
+    - `push`: Triggered when code is pushed to the repository.
+    - `pull_request`: Triggered when a pull request is opened, synchronized, or reopened.
+    - `release`: Triggered when a release is published, unpublished, created, edited, or deleted.
+    - `issue_comment`: Triggered when a comment is created on an issue or pull request.
+    - `fork`: Triggered when a repository is forked.
+    - `watch`: Triggered when someone stars the repository.
+    - `create`: Triggered when a branch or tag is created.
+    - `delete`: Triggered when a branch or tag is deleted.
+    - `deployment`: Triggered when a deployment is created.
+    - `deployment_status`: Triggered when the status of a deployment changes.
+    - `pull_request_review`: Triggered when a review is submitted on a pull request.
+    - `pull_request_review_comment`: Triggered when a comment is created on a pull request review.
+    - `push` and `pull_request` are the most commonly used triggers for CI/CD workflows.
+  Other Event Triggers:
+    - `workflow_dispatch`: Triggered manually via the GitHub Actions tab.
+    - `repository_dispatch`: Triggered by an external event via the GitHub API.
+    - `workflow_call`: Triggered by another workflow.
+    - `schedule`: Triggered at scheduled times using cron syntax.
+  
+  Actions:
+    - Predefined tasks that can be used in workflows.
+    - Can be created by the community and shared on the GitHub Marketplace.
+    - Examples include actions for checking out code, setting up programming languages, running tests, and deploying applications.
+    - To use an action, specify it in a step using the `uses` keyword, e.g.:
+      ```yaml
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2 # https://github.com/marketplace?type=actions
+      ```
