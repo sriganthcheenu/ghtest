@@ -1,0 +1,18 @@
+Git:
+- Version control system for tracking changes in source code during software development.
+
+Github:
+- Cloud-based platform for hosting Git repositories and collaborating on code.
+
+Github Actions:
+- Workflow automation service provided by GitHub.
+
+  Code and Repository Management:
+  - GitHub repositories store code and track changes using Git.
+
+  CI/CD:
+  - Continuous Integration (CI) and Continuous Deployment/Delivery (CD) processes.
+  - CI involves automatically building and testing code changes.
+  - CD involves automatically deploying code changes to production or staging environments.
+
+  
