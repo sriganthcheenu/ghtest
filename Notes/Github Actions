@@ -153,3 +153,29 @@ jobs:
       - name: Run tests
         run: npm test 
 ```
+
+Expressions and Contexts:
+- GitHub Actions supports expressions that allow you to create dynamic and conditional workflows.
+- Expressions are enclosed in `${{ }}` and can be used in various parts of the workflow, such as job conditions, step conditions, and environment variables.
+Example:
+```yaml
+name: Conditional Workflow
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Deploy if on main branch
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: echo "Deploying application..."
+```
