@@ -124,3 +124,32 @@ jobs:
       - name: Deploy Application
         run: echo "Deploying application..."
 ```
+
+Multiple triggers in a Workflow:
+- You can specify multiple events to trigger a workflow by using a list under the `on` key.
+Example:
+```yaml
+name: Multi-Trigger Workflow
+# on: [push, pull_request]  # Trigger on push or pull request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main  
+jobs:
+  build:    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test 
+```
